@@ -4,6 +4,7 @@ struct Photos: View {
     @State var path: [String]
 
     let photos = ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj", "kk", "ll", "mm"]
+    let photos2 = ["11", "22", "33", "44", "55"]
         
     var body: some View {
         NavigationStack(path: $path) {
@@ -11,9 +12,12 @@ struct Photos: View {
                 List(photos, id: \.self) { photo in
                     NavigationLink("Detail \(photo)", value: photo)
                 }.navigationDestination(for: String.self) { photo in
-                    // hide tab navigation
-                    PhotosDetail(photoId: photo)
-                        .toolbar(.hidden, for: .tabBar)
+                    PhotosDetail(path: path, photoId: photo)
+                }
+                List(photos2, id: \.self) { photo in
+                    NavigationLink("Detail append \(photo)", value: photo)
+                }.navigationDestination(for: String.self) { photo in
+                    PhotosDetail(path: path, photoId: photo)
                 }
             }
             .navigationTitle("Photos")
@@ -39,6 +43,7 @@ struct Photos_Previews: PreviewProvider {
 */
 
 struct PhotosDetail: View {
+    @State var path: [String]
     @State private var isPresenting = false
    
     let photoId: String
@@ -48,6 +53,8 @@ struct PhotosDetail: View {
             Button("ShowModal") {
                 isPresenting.toggle()
             }
+            Button("pop", action: {path.removeLast()} )
+            Button("clear", action: {path = []} )
         }.fullScreenCover(isPresented: $isPresenting, content: PhotosModal.init)
     }
 }

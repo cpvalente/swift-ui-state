@@ -16,14 +16,6 @@ struct Tabs: View {
     
     var body: some View {
             TabView(selection: $resolver) {
-                Me(path: path)
-                    .tabItem {
-                        Label("Me", systemImage: "return.left")
-                    }.tag(TabItems.me)
-                Albums(path: path)
-                    .tabItem {
-                        Label("Albums", systemImage: "return.right")
-                    }.tag(TabItems.albums)
                 Photos(path: path)
                     .tabItem {
                         Label("Photos", systemImage: "return.right")

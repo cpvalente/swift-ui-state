@@ -5,9 +5,6 @@ struct Login: View {
 
     var body: some View {
         VStack {
-            NavigationLink("Settings") {
-                Settings()
-            }
             Button("Log in") {
                 loggedIn.toggle()
             }
