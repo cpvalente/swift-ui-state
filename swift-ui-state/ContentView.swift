@@ -26,17 +26,21 @@ struct AppRouter: View {
     
     init() {
         path.append("aa")
-        print("init thing \(path)")
+        print("init of app router \(path)")
     }
     
     // albums/id
     var body: some View {
-        Tabs(resolver: $resolver, path: path)
+        Tabs(resolver: $resolver, path: $path)
             .onAppear(perform: {
-            path.append("bb")
-            print("append thing \(path)")
+                // ["cc", "aa", "bb"]
+                path.append("bb")
+                print("appending in app router \(path)")
 
         })
+        
+        
+        
             .onOpenURL { url in
                 path.removeAll()
                 path.append("dd")

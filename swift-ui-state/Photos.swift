@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct Photos: View {
-    @State var path: [String]
+    @Binding var path: [String]
 
     let photos = ["aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj", "kk", "ll", "mm"]
     let photos2 = ["11", "22", "33", "44", "55"]
@@ -29,7 +29,7 @@ struct Photos: View {
         }.onChange(of: path) { newValue in
             print("photos: path changed \(newValue)")
         }.onAppear() {
-            print("photos init \(path)")
+            print("photos onAppear \(path)")
         }
     }
 }

@@ -12,11 +12,11 @@ enum TabItems: String, Hashable {
 
 struct Tabs: View {
     @Binding var resolver: TabItems
-    @State var path: [String]
+    @Binding var path: [String]
     
     var body: some View {
             TabView(selection: $resolver) {
-                Photos(path: path)
+                Photos(path: $path)
                     .tabItem {
                         Label("Photos", systemImage: "return.right")
                     }
